@@ -17,3 +17,9 @@ Dependencies
     Intl - Internationalization and formatting of dates.
     Geolocator - Getting device location.
     Geocoding - Getting latitude and longitude from address.
+
+In order to run :
+
+    Use command : flutter run 
+    The app will ask for location permission 
+    And auto generate the weather details
