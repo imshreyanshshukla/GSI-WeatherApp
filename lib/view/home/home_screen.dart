@@ -49,11 +49,47 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.all(10.0),
                     child: ListView(
                       // List of child widgets for the home screen
-                      children: const [
-                        AppbarWidget(), // Display location and date
-                        CurrentTempWidget(), // Display current temperature, weather icon, and description
-                        InfoWidget(), // Display additional weather information
-                        FooterWidget(), // Display data source and last update time
+                      children: [
+                        const AppbarWidget(), // Display location and date
+                        const CurrentTempWidget(), // Display current temperature, weather icon, and description
+                        const InfoWidget(), // Display additional weather information
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            children: [
+                              TextField(
+                                controller: globalController.searchController,
+                                decoration: InputDecoration(
+                                  hintText: 'Enter city name',
+                                  border: OutlineInputBorder(),
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              ElevatedButton(
+                                onPressed: globalController.searchWeatherByCity,
+                                child: Text('Search Weather'),
+                              ),
+                              SizedBox(height: 20),
+                              globalController.getWeatherModel().value != null
+                                  ? Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                            'City: ${globalController.searchController.text}'),
+                                        Text(
+                                            'Temperature: ${globalController.currentTemperature()}°C'),
+                                        Text(
+                                            'Weather: ${globalController.weatherMain}'),
+                                        // Add more weather details here...
+                                      ],
+                                    )
+                                  : Text(
+                                      'Enter a city name and search for weather.'),
+                            ],
+                          ),
+                        ),
+                        const FooterWidget(), // Display data source and last update time
                       ],
                     ),
                   ),

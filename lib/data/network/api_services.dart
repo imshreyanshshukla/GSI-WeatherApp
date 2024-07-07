@@ -54,4 +54,6 @@ class ApiServices extends BaseApiServices {
             'Error while Communication ${response.statusCode}');
     }
   }
+
+  getWeatherApiByCityName(String cityName) {}
 }
